@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,55 +9,110 @@
     <style>
         /* Ensure the menu slides down under the header */
         #mobile-menu {
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.0s ease-in-out;
             transform: translateY(-200%);
         }
 
         #mobile-menu.active {
             transform: translateY(0);
         }
+
+        .contact-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .contact-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #101542;
+            border-bottom: 1px solid #101542;
+            box-sizing: border-box;
+        }
+
+        .learn-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .learn-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
     </style>
 </head>
-<body class="bg-[#111847]">
+
+<body class="bg-gradient-to-r from-[#080321] via-[#090627] to-[#101542]">
 
     <!-- Top Space with Color -->
-    <div class="w-full h-[35px] bg-[#111847]"></div>
+    <div class="w-full h-[10px] bg-gradient-to-r from-[#080321] via-[#090627] to-[#101542]"></div>
 
     <!-- Full Screen Header Section -->
-    <header class="w-full h-[55px] bg-[#111847] shadow-md relative flex items-center px-6 z-50">
+    <header
+        class="w-full h-[70px] bg-gradient-to-r from-[#080321] via-[#090627] to-[#101542] shadow-md relative flex items-center z-50">
+        <div class="container mx-auto max-w-[1440px] flex justify-between items-center px-6">
+            <!-- Top-left Corner Shape (Hidden on Mobile) -->
+            <div id="shape-image" class="absolute top-[-35px] left-0 z-10 hidden md:block">
+                <img src="./Images/hero-shape-1.svg fill.png" alt="shape">
+            </div>
 
-        <!-- Top-left Corner Shape (Hidden on Mobile) -->
-        <div id="shape-image" class="absolute top-[-35px] left-0 z-10 hidden md:block">
-            <img src="./Images/hero-shape-1.svg fill.png" alt="shape">
-        </div>
-
-        <div class="flex justify-between items-center w-full">
             <!-- Logo -->
             <div class="flex items-center">
-                <img src="./Images/Logo.png" alt="Logo" class="w-[145px] h-[52px]">
+                <img src="./Images/Logo.png" alt="Logo" class="w-[150px] h-[52px]">
             </div>
 
             <!-- Mobile Menu Toggle Button -->
             <button id="mobile-menu-toggle" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
                 </svg>
             </button>
 
             <!-- Navbar Links (Desktop) -->
-            <nav class="hidden md:flex w-[493px] justify-between items-center text-sm text-white space-x-6">
-                <a href="#" class="hover:text-white">Home</a>
-                <a href="#about" class="hover:text-white">About Us</a>
-                <a href="#solutions" class="hover:text-white">Solutions</a>
-                <a href="#buy-sell" class="hover:text-white">Buy-sell</a>
-                <a href="#blogs" class="hover:text-white">Blogs</a>
+            <nav class="hidden md:flex w-auto space-x-8 text-sm text-white">
+                <a href="#" class="hover:text-blue-600">Home</a>
+                <a href="#about" class="hover:text-blue-600">About Us</a>
+                <a href="#solutions" class="hover:text-blue-600">Solutions</a>
+                <a href="#buy-sell" class="hover:text-blue-600">Buy-sell</a>
+                <a href="#blogs" class="hover:text-blue-600">Blogs</a>
             </nav>
 
             <!-- Contact Us Button (Desktop) -->
-            <div class="hidden md:flex items-center">
-                <a href="#contact" class="w-[176px] h-[55px] flex items-center justify-center text-xs border-2 border-white text-white rounded-none">
-                    Contact Us
-                </a>
+            <div class="hidden md:flex">
+                <div class="contact-button">
+                    <a href="#" class="btn">Contact Us <span>&rarr;</span></a>
+                </div>
             </div>
         </div>
     </header>
@@ -69,11 +125,143 @@
             <a href="#solutions" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Solutions</a>
             <a href="#buy-sell" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Buy-sell</a>
             <a href="#blogs" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Blogs</a>
-            <a href="#contact" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-2 border-blue-600 rounded-lg">
-                Contact Us
-            </a>
+
+
+            <div class="contact-button">
+                <a href="#">Contact Us <span>&rarr;</span></a>
+            </div>
+
         </nav>
     </div>
+
+    <!-- Main Content Section -->
+    <section class="relative z-10 py-16">
+        <!-- Left Sidebar with Social Media Icons outside the container -->
+        <div class="absolute top-[15%] left-[8%] flex flex-col items-center space-y-4 hidden md:flex">
+            <img src="./Images/Line 3.png" alt="" class="w-[1px] h-[75px]">
+            <img src="./Images/Group 22.png" alt="" class="w-[50px] h-[50px]">
+            <img src="./Images/Group 22.png" alt="" class="w-[50px] h-[50px]">
+            <img src="./Images/Group 23.png" alt="" class="w-[50px] h-[50px]">
+            <img src="./Images/Line 4.png" alt="" class="w-[1px] h-[75px]">
+        </div>
+
+
+
+
+        <!-- Main Content -->
+        <div class="container mx-auto max-w-[1440px] flex flex-col md:flex-row items-center px-4">
+            <!-- Left Content -->
+            <div class="w-full md:w-1/2 text-left text-white relative mb-12 md:mb-0">
+                <h1 class="text-3xl md:text-4xl font-bold mb-5 leading-snug">
+                    Import Export <span class="text-purple-300">Agent for</span> <br> International Trade
+                </h1>
+                <p class="text-sm md:text-lg mb-7">
+                    Export Agent is the professional that your company needs if you are looking for buyers or suppliers
+                    in textile, food and beverages, agriculture products, aquaculture, plastics fields.
+                </p>
+                <div class="learn-button">
+                    <a href="#">Learn More <span>&rarr;</span></a>
+                </div>
+            </div>
+
+            <!-- Right Content (Image) -->
+            <div class="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
+                <img src="./Images/20945965-ai 1.png" alt="Hero Image"
+                    class="max-w-[280px] md:max-w-full h-auto rounded-lg">
+            </div>
+        </div>
+
+        <!-- Centered "Scroll Down" Content with specified size and color, left aligned on mobile -->
+        <div class="flex justify-center items-center space-y-4 mt-8">
+            <div class="w-[90px] h-[102px] text-left text-white text-[16px] md:text-center">
+                <img src="./Images/Group 16.png" alt="" class="mx-auto mb-4">
+                <div>Scroll Down</div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="relative z-10 py-16 bg-[#0A0627]">
+        <!-- Backgrounds -->
+        <div class="absolute top-[8%] left-[2%] ">
+            <img src="./Images/Group 1000003788.png" alt="">
+        </div>
+        <div class="absolute bottom-[-4%] right-[0%] hidden md:block">
+            <img src="./Images/Group 1000003773.png" alt="">
+        </div>
+    
+        <div class="container mx-auto max-w-[1440px] flex flex-col-reverse md:flex-row items-center px-4 space-y-8 md:space-y-0">
+            <!-- Left Content (Image) -->
+            <div class="w-full md:w-1/2 flex justify-center px-4">
+                <img src="./Images/Group 1000003768.png" alt="Hero Image"
+                    class="max-w-[280px] md:max-w-full h-auto rounded-lg">
+            </div>
+    
+            <!-- Right Content (Text) -->
+            <div class="w-full md:w-1/2 text-left text-white px-4 space-y-8">
+                <!-- Heading -->
+                <div class="space-y-4">
+                    <h1 class="text-3xl md:text-4xl font-bold leading-snug text-left">
+                        Export-import from <span class="text-purple-300">India <br> made easy.</span>
+                    </h1>
+                    <p class="text-sm md:text-base text-left">
+                        See how we can help your company establish international trade.
+                    </p>
+                </div>
+    
+                <!-- Features Section -->
+                <div class="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-4">
+                    <!-- Left Part -->
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <img src="./Images/Frame 2.png" alt="Icon 1" class="w-4 h-4 mt-1">
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                Finds the best approach to exporting for your company.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <img src="./Images/Frame 2.png" alt="Icon 2" class="w-4 h-4 mt-1">
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                Negotiates on prices and business conditions.
+                            </p>
+                        </div>
+                    </div>
+    
+                    <!-- Right Part -->
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <img src="./Images/Frame 2.png" alt="Icon 3" class="w-4 h-4 mt-1">
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                Finds the best approach to import for your company.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <img src="./Images/Frame 2.png" alt="Icon 4" class="w-4 h-4 mt-1">
+                            <p class="text-xs md:text-sm leading-relaxed">
+                                Import of products and services from India.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Learn More Button -->
+                <div class="flex justify-start learn-button">
+                    <a href="#" class="text-purple-300 hover:underline font-semibold">
+                        Learn More <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+
+
+
 
     <!-- JavaScript to Toggle Mobile Menu -->
     <script>
@@ -105,4 +293,5 @@
         });
     </script>
 </body>
+
 </html>
