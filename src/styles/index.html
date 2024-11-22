@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu with Cross Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensure the menu slides down under the header */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(-200%);
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-[#111847]">
+
+    <!-- Top Space with Color -->
+    <div class="w-full h-[35px] bg-[#111847]"></div>
+
+    <!-- Full Screen Header Section -->
+    <header class="w-full h-[55px] bg-[#111847] shadow-md relative flex items-center px-6 z-50">
+
+        <!-- Top-left Corner Shape (Hidden on Mobile) -->
+        <div id="shape-image" class="absolute top-[-35px] left-0 z-10 hidden md:block">
+            <img src="./Images/hero-shape-1.svg fill.png" alt="shape">
+        </div>
+
+        <div class="flex justify-between items-center w-full">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="./Images/Logo.png" alt="Logo" class="w-[145px] h-[52px]">
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Navbar Links (Desktop) -->
+            <nav class="hidden md:flex w-[493px] justify-between items-center text-sm text-white space-x-6">
+                <a href="#" class="hover:text-white">Home</a>
+                <a href="#about" class="hover:text-white">About Us</a>
+                <a href="#solutions" class="hover:text-white">Solutions</a>
+                <a href="#buy-sell" class="hover:text-white">Buy-sell</a>
+                <a href="#blogs" class="hover:text-white">Blogs</a>
+            </nav>
+
+            <!-- Contact Us Button (Desktop) -->
+            <div class="hidden md:flex items-center">
+                <a href="#contact" class="w-[176px] h-[55px] flex items-center justify-center text-xs border-2 border-white text-white rounded-none">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu (Initially Hidden) -->
+    <div id="mobile-menu" class="md:hidden bg-[#111847] w-full shadow-md absolute left-0 z-40">
+        <nav class="flex flex-col items-center space-y-6 py-6">
+            <a href="#" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Home</a>
+            <a href="#about" class="text-white hover:text-blue-600 px-4 py-3 text-lg">About Us</a>
+            <a href="#solutions" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Solutions</a>
+            <a href="#buy-sell" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Buy-sell</a>
+            <a href="#blogs" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Blogs</a>
+            <a href="#contact" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-2 border-blue-600 rounded-lg">
+                Contact Us
+            </a>
+        </nav>
+    </div>
+
+    <!-- JavaScript to Toggle Mobile Menu -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const shapeImage = document.getElementById('shape-image');
+
+        let isMenuOpen = false;
+
+        const updateButtonIcon = () => {
+            if (isMenuOpen) {
+                // Show close icon (cross)
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>`;
+            } else {
+                // Show hamburger icon
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>`;
+            }
+        };
+
+        // Toggle mobile menu visibility and button icon
+        mobileMenuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active');
+            updateButtonIcon();
+        });
+    </script>
+</body>
+</html>
