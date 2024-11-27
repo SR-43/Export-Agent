@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu with Cross Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensure the menu slides down under the header */
+        #mobile-menu {
+            transition: transform 0.0s ease-in-out;
+            transform: translateY(-200%);
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .contact-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .contact-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #101542;
+            border-bottom: 1px solid #101542;
+            box-sizing: border-box;
+        }
+
+        .learn-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .learn-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .view-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .view-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .testimonial-section {
+            background: url('path/to/background.jpg') no-repeat center/cover;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        img {
+            border-radius: inherit;
+        }
+
+        blockquote {
+            position: relative;
+            margin: 16px 0;
+            padding: 0 20px;
+            font-size: 1rem;
+        }
+
+        .line-horizontal {
+            position: absolute;
+            height: 4px;
+            width: 150px;
+            background-color: white;
+            left: 520px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-[#080321] via-[#090627] to-[#101542]">
+    <!-- Top Space with Color -->
+    <div class="w-full h-[10px] bg-gradient-to-b from-[#111848] to-[#111848]"></div>
+
+    <!-- Full Screen Header Section -->
+    <header
+        class="w-full h-[70px] bg-gradient-to-b from-[#111848] to-[#111848] shadow-md relative flex items-center z-50">
+        <div class="container mx-auto max-w-[1440px] flex justify-between items-center px-6">
+            <!-- Top-left Corner Shape (Hidden on Mobile) -->
+            <div id="shape-image" class="absolute top-[-50px] right-0 z-10 hidden md:block">
+                <img src="./Images/pngwing 1.png" alt="shape">
+            </div>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="./Images/Logo.png" alt="Logo" class="w-[150px] h-[52px]">
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Navbar Links (Desktop) -->
+            <nav class="hidden md:flex w-auto space-x-8 text-sm text-white">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <a href="AboutUs.html" class="hover:text-blue-600">About Us</a>
+                <a href="Solution.html" class="hover:text-blue-600">Solutions</a>
+                <a href="Buy.html" class="hover:text-blue-600">Buy-sell</a>
+                <a href="Blog.html" class="hover:text-blue-600">Blogs</a>
+            </nav>
+
+            <!-- Contact Us Button (Desktop) -->
+            <div class="hidden md:flex">
+                <div class="contact-button">
+                    <a href="ContactUs.html" class="btn z-10">Contact Us <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <!-- Mobile Menu (Initially Hidden) -->
+     <div id="mobile-menu" class="md:hidden bg-[#080321] w-full shadow-md absolute left-0 z-40">
+        <nav class="flex flex-col items-center space-y-6 py-6">
+            <a href="#" 
+            class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">
+            Home
+         </a>
+            <a href="AboutUs.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">About Us</a>
+            <a href="Solution.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">Solutions</a>
+            <a href="Buy.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">Buy-sell</a>
+            <a href="Blog.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg ">Blogs</a>
+
+
+            <div class="contact-button">
+                <a href="ContactUs.html">Contact Us <span>&rarr;</span></a>
+            </div>
+
+        </nav>
+    </div>
+
+
+
+
+
+    <section class="relative py-64 bg-gradient-to-b from-[#111848] to-[#080321]">
+        <!-- Container for Centered Content -->
+        <div class="container mx-auto flex items-center justify-center relative">
+            <!-- Left Image -->
+            <div class="absolute top-[-170%] left-[32%] mt-4">
+                <img src="./Images/Vector 4.png" alt="Left Image" class="w-[161px] h-[258px]">
+            </div>
+
+            <!-- Center Text (Home / About Us) -->
+            <div class="text-center text-white z-10 mx-8">
+                <h1 class="text-4xl font-bold mb-8">Home / <span class="text-purple-300">Buy</span></h1>
+
+            </div>
+
+            <!-- Right Image -->
+            <div class="absolute top-[-190%] right-[32%] mt-4">
+                <img src="./Images/Vector 5.png" alt="Right Image" class="w-[161px] h-[258px]">
+            </div>
+        </div>
+        <img src="Images/A-1.png" class="absolute top-[15%] left-[2%]">
+    </section>
+
+
+
+    <section class="bg-[#080321] text-white min-h-screen flex items-center justify-center">
+        <div class="container mx-auto px-4 py-10 max-w-4xl">
+            <!-- Tab Buttons -->
+            <div class="flex justify-center mb-8">
+                <button id="buyTab"
+                    class="px-8 md:px-16 py-3 md:py-5 text-sm md:text-lg font-semibold bg-[#1E1751] hover:bg-[#0D0B32] transition duration-300 active"
+                    onclick="showForm('buy')">
+                    Buy
+                </button>
+                <button id="sellTab"
+                    class="px-8 md:px-16 py-3 md:py-5 text-sm md:text-lg font-semibold bg-[#1E1751] hover:bg-[#0D0B32] transition duration-300"
+                    onclick="showForm('sell')">
+                    Sell
+                </button>
+            </div>
+
+            <div class="w-full p-6 md:p-16 shadow-lg border rounded relative" style="
+                border-image-source: linear-gradient(to top, #080321, #1E1751);
+                border-image-slice: 1;
+                overflow: hidden;">
+                <!-- Background Layer -->
+                <div style="
+                    background: linear-gradient(to top, rgba(8, 3, 33, 0.1), rgba(30, 23, 81, 0.1)); 
+                    position: absolute; 
+                    top: 0; 
+                    left: 0; 
+                    right: 0; 
+                    bottom: 0; 
+                    z-index: 0; 
+                    border-radius: inherit;">
+                </div>
+                <img src="Images/pngwing 2.png" class="absolute top-[0%] left-[0%] hidden md:block">
+
+
+
+                <!-- Buy Form -->
+                <div id="buyForm" class="text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4">
+                        Buy the best <span class="text-purple-300">products with us...</span>
+                    </h2>
+                    <p class="text-sm md:text-lg text-gray-300 mb-6">
+                        After the submission of the form, one of our team members will reach out to you within 24
+                        <br class="hidden md:block">hours to discuss further proceedings in detail.
+                    </p>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Enter Your Company Name"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Full Name"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="email" placeholder="Enter Your Email ID"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Phone Number"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Product Details"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Quantity In Tons"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Price/MT"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Incoterm"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Port & Country"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Payment Terms"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        </div>
+                        <div class="contact-button mt-6 px-4 py-2 text-white font-medium ">
+                            <a href="#" class="btn">Submit Now <span>&rarr;</span></a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sell Form -->
+                <div id="sellForm" class="text-center hidden">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4">
+                        Sell your <span class="text-purple-300">products with us...</span>
+                    </h2>
+                    <p class="text-sm md:text-lg text-gray-300 mb-6">
+                        After the submission of the form, one of our team members will reach out to you within 24
+                        <br class="hidden md:block">hours to discuss further proceedings in detail.
+                    </p>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Enter Your Company Name"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Full Name"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="email" placeholder="Enter Your Email ID"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Phone Number"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Website"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Industry"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Product Details"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Yearly Production Capacity"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Incoterm"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                            <input type="text" placeholder="Enter Your Approximate Sales in Units"
+                                class="input-field w-full px-4 py-2 bg-[#0A0627] border border-[#1E1751] text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        </div>
+                        <div class="contact-button mt-6 px-4 py-2 text-white font-medium ">
+                            <a href="#" class="btn">Submit Now <span>&rarr;</span></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section class="bg-[#0A0627] text-white py-12 px-6 relative">
+        <!-- Background Images (hidden on small screens) -->
+        <img src="Images/Footer → footer-shape-2.svg.png" class="absolute top-[3%] left-[0%] hidden md:block">
+        <img src="Images/SVG-R.png" class="absolute top-[50%] right-[0%] h-[25%] hidden md:block">
+
+        <!-- Use the same container width as above (max-w-7xl) and ensure it's centered -->
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <!-- First Part: 40% width -->
+            <div class="w-full md:w-2/5 mb-6 md:mb-0 text-center md:text-left">
+                <img src="Images/f-logo.png" alt="Image" class="mb-4 w-[181px] h-[65px] mx-auto md:mx-0">
+                <p class="text-lg mb-6">
+                    There's nothing better than a good natter and we’d <br> love to hear about your business.
+                </p>
+                <div class="flex justify-start space-x-4">
+                    <img src="Images/facbook.png" alt="Icon 1" class="w-10 h-10">
+                    <img src="Images/instagram.png" alt="Icon 2" class="w-10 h-10">
+                    <img src="Images/linkidn.png" alt="Icon 3" class="w-10 h-10">
+                    <img src="Images/youtube.png" alt="Icon 4" class="w-10 h-10">
+                    <img src="Images/twintter.png" alt="Icon 5" class="w-10 h-10">
+                </div>
+            </div>
+            <!-- Second Part: 30% width -->
+            <div class="w-full md:w-1/4 mb-6 md:mb-0 text-start">
+                <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-white">Vendor Partnership</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Direct Sourcing</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Buy - Sell</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Blogs</a></li>
+                </ul>
+            </div>
+            <!-- Third Part: 30% width -->
+            <div class="w-full md:w-1/6 text-start">
+                <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                <!-- First contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/call.png" alt="Phone" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">+91 123 456 789</p>
+                    </div>
+                </div>
+                <!-- Second contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/mg.png" alt="Email" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">hello@exportagent.in</p>
+                    </div>
+                </div>
+                <!-- Third contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/location.png" alt="Location" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">Exult Shopper, Vesu, Surat, GJ 395007, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Links and Copyright in One Row -->
+        <div class="mt-12 text-center w-full border-t border-[#1E1751]">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-4">
+                <p class="text-gray-400 mb-4 md:mb-0">&copy; Export Agent All Right Reserved.</p>
+                <div class="space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white">Help</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript to Toggle Mobile Menu -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const shapeImage = document.getElementById('shape-image');
+
+        let isMenuOpen = false;
+
+        const updateButtonIcon = () => {
+            if (isMenuOpen) {
+                // Show close icon (cross)
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>`;
+            } else {
+                // Show hamburger icon
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>`;
+            }
+        };
+
+        // Toggle mobile menu visibility and button icon
+        mobileMenuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active');
+            updateButtonIcon();
+        });
+
+
+
+
+        function showForm(form) {
+            const buyForm = document.getElementById('buyForm');
+            const sellForm = document.getElementById('sellForm');
+            const buyTab = document.getElementById('buyTab');
+            const sellTab = document.getElementById('sellTab');
+            const pageTitle = document.querySelector('.text-center h1'); // Target the title
+
+            if (form === 'buy') {
+                buyForm.classList.remove('hidden');
+                sellForm.classList.add('hidden');
+                buyTab.classList.add('active');
+                sellTab.classList.remove('active');
+                pageTitle.innerHTML = 'Home / <span class="text-purple-300">Buy</span>'; // Change title to "Buy"
+            } else {
+                buyForm.classList.add('hidden');
+                sellForm.classList.remove('hidden');
+                buyTab.classList.remove('active');
+                sellTab.classList.add('active');
+                pageTitle.innerHTML = 'Home / <span class="text-purple-300">Sell</span>'; // Change title to "Sell"
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

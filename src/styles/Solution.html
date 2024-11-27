@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu with Cross Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensure the menu slides down under the header */
+        #mobile-menu {
+            transition: transform 0.0s ease-in-out;
+            transform: translateY(-200%);
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .contact-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .contact-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #101542;
+            border-bottom: 1px solid #101542;
+            box-sizing: border-box;
+        }
+
+        .learn-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .learn-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .view-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .view-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .testimonial-section {
+            background: url('path/to/background.jpg') no-repeat center/cover;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        img {
+            border-radius: inherit;
+        }
+
+        blockquote {
+            position: relative;
+            margin: 16px 0;
+            padding: 0 20px;
+            font-size: 1rem;
+        }
+
+        .line-horizontal {
+            position: absolute;
+            height: 4px;
+            width: 150px;
+            background-color: white;
+            left: 520px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-[#080321] via-[#090627] to-[#101542]">
+    <!-- Top Space with Color -->
+    <div class="w-full h-[10px] bg-gradient-to-b from-[#111848] to-[#111848]"></div>
+
+    <!-- Full Screen Header Section -->
+    <header
+        class="w-full h-[70px] bg-gradient-to-b from-[#111848] to-[#111848] shadow-md relative flex items-center z-50">
+        <div class="container mx-auto max-w-[1440px] flex justify-between items-center px-6">
+            <!-- Top-left Corner Shape (Hidden on Mobile) -->
+            <div id="shape-image" class="absolute top-[-50px] right-0 z-10 hidden md:block">
+                <img src="./Images/pngwing 1.png" alt="shape">
+            </div>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="./Images/Logo.png" alt="Logo" class="w-[150px] h-[52px]">
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Navbar Links (Desktop) -->
+            <nav class="hidden md:flex w-auto space-x-8 text-sm text-white">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <a href="AboutUs.html" class="hover:text-blue-600">About Us</a>
+                <a href="Solution.html" class="hover:text-blue-600">Solutions</a>
+                <a href="Buy.html" class="hover:text-blue-600">Buy-sell</a>
+                <a href="Blog.html" class="hover:text-blue-600">Blogs</a>
+            </nav>
+
+            <!-- Contact Us Button (Desktop) -->
+            <div class="hidden md:flex">
+                <div class="contact-button">
+                    <a href="ContactUs.html" class="btn z-10">Contact Us <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <!-- Mobile Menu (Initially Hidden) -->
+     <div id="mobile-menu" class="md:hidden bg-[#080321] w-full shadow-md absolute left-0 z-40">
+        <nav class="flex flex-col items-center space-y-6 py-6">
+            <a href="#" 
+            class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">
+            Home
+         </a>
+            <a href="AboutUs.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">About Us</a>
+            <a href="Solution.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">Solutions</a>
+            <a href="Buy.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">Buy-sell</a>
+            <a href="Blog.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg ">Blogs</a>
+
+
+            <div class="contact-button">
+                <a href="ContactUs.html">Contact Us <span>&rarr;</span></a>
+            </div>
+
+        </nav>
+    </div>
+
+
+
+
+
+    <section class="relative py-64 bg-gradient-to-b from-[#111848] to-[#080321]">
+        <!-- Container for Centered Content -->
+        <div class="container mx-auto flex items-center justify-center relative">
+            <!-- Left Image -->
+            <div class="absolute top-[-170%] left-[32%] mt-4">
+                <img src="./Images/Vector 4.png" alt="Left Image" class="w-[161px] h-[258px]">
+            </div>
+
+            <!-- Center Text (Home / About Us) -->
+            <div class="text-center text-white z-10 mx-8">
+                <h1 class="text-4xl font-bold mb-8">Home / <span class="text-purple-300">Solution</span></h1>
+            </div>
+
+            <!-- Right Image -->
+            <div class="absolute top-[-190%] right-[32%] mt-4">
+                <img src="./Images/Vector 5.png" alt="Right Image" class="w-[161px] h-[258px]">
+            </div>
+        </div>
+        <img src="Images/A-1.png" class="absolute top-[15%] left-[2%]">
+    </section>
+
+
+
+    <section class="bg-[#080321] py-16 relative">
+        <img src="Images/SVG-L.png" class="absolute top-[40%] left-[0%] h-[10%] sm:top-[50%] sm:h-[8%]">
+        <!-- Container -->
+        <div class="container mx-auto px-6 py-12">
+
+            <!-- Title Row -->
+            <div class="flex flex-col sm:flex-row justify-center mb-12 sm:mb-24 space-y-4 sm:space-y-0">
+                <h2
+                    class="text-2xl sm:text-4xl text-white font-semibold bg-[#0D0B32] px-8 sm:px-24 py-4 sm:py-6 text-left">
+                    Direct Sourcing Solution
+                </h2>
+                <h2
+                    class="text-2xl sm:text-4xl text-white font-semibold bg-[#0A0627] px-8 sm:px-24 py-4 sm:py-6 text-left">
+                    Vendor Partnership Program
+                </h2>
+            </div>
+
+            <!-- Direct Sourcing Solution Section -->
+            <div
+                class="flex flex-col sm:flex-row items-start justify-center mb-12 space-y-8 sm:space-y-0 gap-6 sm:gap-12">
+                <!-- Image Part -->
+                <div class="w-full sm:w-1/2">
+                    <img src="Images/MAP.png" alt="Direct Sourcing" class="w-full h-auto">
+                </div>
+                <!-- Title, Paragraph, Button Part -->
+                <div class="w-full sm:w-1/2 text-white text-left">
+                    <h3 class="text-2xl sm:text-3xl font-semibold mb-4" style="font-size: 32px; line-height: 40px;">
+                        Product Sourcing and <br>
+                        Procurement <span class="text-purple-300">Agent in India</span>
+                    </h3>
+                    <p class="text-base sm:text-lg mb-6">Source from factories you can't find on B2B platforms.</p>
+
+                    <div class="contact-button">
+                        <a href="#" class="text-base sm:text-lg  text-white py-2 px-6">
+                            Start Here <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <section class="bg-[#080321] py-16">
+        <div class="container mx-auto px-6">
+            <!-- Title and Paragraph Centered -->
+            <div class="text-start px-4 mb-12 md:mb-32">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 leading-snug">
+                    We are building an ecosystem where export and import of <br
+                        class="hidden md:block whitespace-nowrap">
+                    products is more reliable,
+                    <span class="text-purple-300">transparent and efficient.</span>
+                </h2>
+                <p class="text-base md:text-lg text-white max-w-full md:max-w-3xl leading-relaxed whitespace-nowrap">
+                    We set out this venture with an aim of empowering businesses by enabling great products to
+                    cross-market
+                    borders more freely. <br class="hidden md:block"> In our efforts to attain this vision, over the
+                    years we have diversified
+                    into various fields, gained expertise, and forayed into Export/ <br class="hidden md:block">
+                    Import, Trading business, and acting as a commission agent & export agent.
+                </p>
+            </div>
+            <!-- Image -->
+            <div class="flex justify-center">
+                <img src="Images/Group 1000005566.png" alt="Export Import Ecosystem"
+                    class="w-full md:w-auto max-w-xs md:max-w-full">
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section class="bg-[#080321] py-16">
+        <div class="container mx-auto px-6">
+            <!-- Title and Paragraph Centered -->
+            <div class="container mx-auto text-start px-4 mb-32">
+                <h2 class="text-3xl font-bold text-white mb-4" style="font-size: 32px; line-height: 38px;">
+                    We are building an ecosystem where export and import of <br> products is more reliable,
+                    <span class="text-purple-300">transparent and efficient.</span>
+                </h2>
+                <p class="text-lg text-white max-w-3xl text-start whitespace-nowrap">
+                    We set out this venture with an aim of empowering businesses by enabling great product cross-market
+                    borders more freely. <br> In our efforts to attain this vision; over the years we have diversified
+                    into
+                    various fields, gained expertise, and that has forayed into Export/ <br> Import, Trading business
+                    and;
+                    acting as a commission agent & export agent.
+                </p>
+            </div>
+
+            <div class="mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f7.png" alt="Feature 1" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Bath Linen</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f2.png" alt="Feature 2" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Apparels</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit. </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f3.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f4.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+                <!-- Feature 1 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f5.png" alt="Feature 1" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Grains</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f6.png" alt="Feature 2" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Toys</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f7.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f8.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+                <!-- Feature 1 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f9.png" alt="Feature 1" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Grains</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f10.png" alt="Feature 2" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Toys</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f11.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f12.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 mt-16">
+                <!-- Feature 1 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f13.png" alt="Feature 1" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Grains</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f14.png" alt="Feature 2" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Toys</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f15.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="relative bg-[#0A0627] p-10 shadow-md md:block hidden">
+                    <div class="absolute top-[-1%] right-[-1%] w-20 h-20 bg-cover bg-no-repeat opacity-100"
+                        style="background-image: url('./Images/SVG.png');"></div>
+                    <div class="text-left">
+                        <img src="./Images/f16.png" alt="Feature 3" class="w-[35px] h-[35px] mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Shrimps</h3>
+                        <p class="text-gray-400 text-sm">
+                            Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+
+
+    <section class="bg-[#080321] py-16 relative">
+
+        <!-- Container -->
+        <div class="container mx-auto px-6 py-12">
+
+
+            <!-- Direct Sourcing Solution Section -->
+            <div class="flex flex-col md:flex-row items-center justify-center mb-12 space-y-8 md:space-y-0 gap-12">
+
+                <!-- Title, Paragraph, Button Part -->
+                <div class="w-full md:w-1/2 text-white">
+                    <h3 class="text-3xl font-semibold mb-4" style="font-size: 45px; line-height: 45px;">Sourcing right
+                        products in <br> the
+                        right region at the <br>
+                        <span class="text-purple-300">right price </span>
+                    </h3>
+                    <p class="text-lg mb-6">By providing as much information as possible on supplier profiles, we help
+                        you get <br> to know suppliers in more detail even before you contact them. This enables you
+                        <br>to save
+                        time and increase the chance of creating new business opportunities with <br>the most suitable
+                        partners. <br> As a buyer, you can find details about each supplier’s products,
+                        certifications,<br> facilities, and so on.
+                    </p>
+
+
+                </div>
+                <!-- Image Part -->
+                <div class="w-full md:w-1/2">
+                    <img src="Images/Group 1000005410.png" alt="Direct Sourcing" class="w-full h-auto">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="bg-[#0A0627] py-16 relative" style="padding-bottom: 5%; padding-top: 5%;">
+        <!-- Container for the whole section, make sure everything is centered -->
+        <div class="absolute top-[12%] left-[-o.1%] w-20 h-20 bg-cover bg-no-repeat opacity-100 hidden md:block"
+            style="background-image: url('./Images/SVG-L.png');"></div>
+        <div class="container mx-auto text-center relative z-10">
+            <div class="absolute top-[83%] right-[-11.6%] w-20 h-20 bg-cover bg-no-repeat opacity-100 hidden md:block"
+                style="background-image: url('./Images/SVG-R.png');"></div>
+            <div class="container mx-auto text-center relative z-10">
+                <!-- Heading and Subheading -->
+                <div class="w-full p-6 lg:p-8 shadow-lg border rounded relative mx-auto max-w-[1400px] h-[360px]" style="
+                    border-image-source: linear-gradient(to top, #080321, #1E1751);
+                    border-image-slice: 1;
+                    overflow: hidden;
+                    margin-top: 60px;
+                    padding-top: 30px;
+                    background: linear-gradient(to top, rgba(14, 11, 45, 0.5), rgba(30, 23, 81, 0.1));
+                    position: relative;">
+                    <!-- Background Layer -->
+                    <div style="
+                        background: linear-gradient(to top, rgba(8, 3, 33, 0.1), rgba(30, 23, 81, 0.1)); 
+                        position: absolute; 
+                        top: 0; 
+                        left: 0; 
+                        right: 0; 
+                        bottom: 0; 
+                        z-index: 0; 
+                        border-radius: inherit;">
+                    </div>
+                    <div class="text-center mb-12">
+
+                        <h2 class="text-4xl font-bold text-white">
+                            Conclude long-term contracts with time-tested <br><span class="text-purple-300">
+                                manufacturers in India.</span>
+                        </h2>
+                        <p class="text-gray-400 mt-4 max-w-2xl mx-auto whitespace-nowrap">
+                            We work with more than 750+ factories all over India. Factories that have stood the test
+                            of<br>
+                            time. Here's how we can help you source the products you need while taking care of all the
+                            necessary <br> steps to get them delivered to you.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- Feature Cards Section, center all feature cards -->
+                <div class="flex flex-wrap justify-center gap-8 mt-[-115px] relative z-20 pb-[10%]">
+                    <!-- Feature 1 -->
+                    <div
+                        class="bg-[#0E0B2D] w-[400px] h-[250px] p-8 rounded-lg shadow-lg flex flex-col items-center relative">
+                        <img src="Images/m1.png" alt="Logistics Management" class="w-16 h-16 mb-4">
+                        <p class="text-gray-400 text-sm mb-2">
+                            Search for a factory and conduct negotiations
+                        </p>
+                        <!-- Positioned Image at the bottom center -->
+                        <div class="absolute top-[92%] left-[50%] transform -translate-x-1/2 mb-4">
+                            <img src="Images/Group 1000005374.png" alt="" class="w-10 h-10">
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div
+                        class="bg-[#0E0B2D] p-8 w-[400px] h-[250px] rounded-lg shadow-lg flex flex-col items-center relative">
+                        <img src="Images/m2.png" alt="Quality Control" class="w-16 h-16 mb-4">
+                        <p class="text-gray-400 text-sm mb-2">
+                            Carrying out a full audit of the factory, photo and video of the production line, photo
+                            documents of the factory
+                        </p>
+                        <!-- Positioned Image at the bottom center -->
+                        <div class="absolute top-[92%] left-[50%] transform -translate-x-1/2 mb-4">
+                            <img src="Images/Group 1000005375.png" alt="" class="w-10 h-10">
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div
+                        class="bg-[#0E0B2D] p-8 w-[400px] h-[250px] rounded-lg shadow-lg flex flex-col items-center relative">
+                        <img src="Images/m3.png" alt="Bespoke Production" class="w-16 h-16 mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Bespoke Production</h3>
+                        <p class="text-gray-400 text-sm mb-2">
+                            Random check of 10-20% of the goods after 100% readiness of the goods
+                        </p>
+                        <!-- Positioned Image at the bottom center -->
+                        <div class="absolute top-[92%] left-[50%] transform -translate-x-1/2 mb-4">
+                            <img src="Images/Group 1000005376.png" alt="" class="w-10 h-10">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-8 mt-[-115px] relative z-20 mt-16">
+                    <!-- Feature 1 -->
+                    <div
+                        class="bg-[#0E0B2D] w-[400px] h-[250px] p-8 rounded-lg shadow-lg flex flex-col items-center relative">
+                        <img src="Images/m4.png" alt="Logistics Management" class="w-16 h-16 mb-4">
+                        <p class="text-gray-400 text-sm mb-4">
+                            Secondary inspection after defects have been corrected or replaced </p>
+                        <!-- Positioned Image at the bottom center -->
+                        <div class="absolute top-[92%] left-[50%] transform -translate-x-1/2 mb-4">
+                            <img src="Images/04.png" alt="" class="w-10 h-10">
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div
+                        class="bg-[#0E0B2D] p-8 w-[400px] h-[250px] rounded-lg shadow-lg flex flex-col items-center relative">
+                        <img src="Images/m5.png" alt="Quality Control" class="w-16 h-16 mb-4">
+                        <p class="text-gray-400 text-sm mb-4">
+                            Control of shipment </p>
+                        <!-- Positioned Image at the bottom center -->
+                        <div class="absolute top-[92%] left-[50%] transform -translate-x-1/2 mb-4">
+                            <img src="Images/05.png" alt="" class="w-10 h-10">
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div
+                        class="bg-[#0E0B2D] p-8 w-[400px] h-[250px] rounded-lg shadow-lg flex flex-col items-center relative">
+                        <img src="Images/m6.png" alt="Bespoke Production" class="w-16 h-16 mb-4">
+                        <p class="text-gray-400 text-sm mb-4">
+                            Every step will be followed with the video-photo reports and market commentary
+                        </p>
+                        <!-- Positioned Image at the bottom center -->
+                        <div class="absolute top-[92%] left-[50%] transform -translate-x-1/2 mb-4">
+                            <img src="Images/06.png" alt="" class="w-10 h-10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+    <section class="bg-[#080321] py-16">
+        <div class="container mx-auto px-6">
+            <!-- Title -->
+            <h2 class="text-center text-3xl md:text-4xl font-semibold text-white mb-12">
+                What is the role of <span class="text-purple-300">sourcing agent</span> in India?
+            </h2>
+
+            <!-- Grid Boxes -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Box 1 -->
+                <div class="bg-[#1D1833] text-white p-6 rounded-lg shadow-lg relative border border-white">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="text-2xl font-bold bg-purple-300 text-[#1D1833] rounded-full w-12 h-12 flex items-center justify-center">
+                            1
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">
+                                Verify the supplier credentials and visit the factory
+                            </h3>
+                            <p class="text-sm text-gray-300">
+                                Our on-the-ground presence in India means our team can verify ‘who is <br>
+                                who’ and separate 'the good from the bad,’ enabling your business to make <br>
+                                accurate sourcing decisions. Moreover, when you do business with us, you <br>
+                                can be assured that all payments will always be handled safely and <br>
+                                reliably. As your sourcing agent, you won’t ever need to worry about scams <br>
+                                and frauds.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="bg-[#1D1833] text-white p-6 rounded-lg shadow-lg border border-white">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="text-2xl font-bold bg-purple-300 text-[#1D1833] rounded-full w-12 h-12 flex items-center justify-center">
+                            2
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">
+                                Source from factories you can’t find online
+                            </h3>
+                            <p class="text-sm text-gray-300">
+                                70% of products we export are not listed on Alibaba, IndiaMart, or other <br>
+                                B2B websites. As one example, many factories will only attend trade shows <br>
+                                in India for their industry. Often, these are some of the best manufacturers <br>
+                                in their field.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="bg-[#1D1833] text-white p-6 rounded-lg shadow-lg border border-white">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="text-2xl font-bold bg-purple-300 text-[#1D1833] rounded-full w-12 h-12 flex items-center justify-center">
+                            3
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">
+                                Save time and avoid mistakes
+                            </h3>
+                            <p class="text-sm text-gray-300">
+                                Sourcing in the right region, understanding different specifications and <br>
+                                materials, and knowing how and when to get the best price from a <br>
+                                potential manufacturer are just a few of the considerations we make to <br>
+                                save our customers time and avoid any unnecessary pitfalls along the way. <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box 4 -->
+                <div class="bg-[#1D1833] text-white p-6 rounded-lg shadow-lg border border-white">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="text-2xl font-bold bg-purple-300 text-[#1D1833] rounded-full w-12 h-12 flex items-center justify-center">
+                            4
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">
+                                Mitigate the risk of potential fraud
+                            </h3>
+                            <p class="text-sm text-gray-300">
+                                We approach each assignment as a mutual obligation between the customer <br>
+                                and ourselves, rather than a non-commitment agreement. Many sourcing <br>
+                                agencies’ strategies are centered on a no-cure/no-pay rapid commission <br>
+                                trade; just quick picks and choices. We ensure quality and reliability. <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="bg-[#1D1833] text-white p-6 rounded-lg shadow-lg border border-white">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="text-2xl font-bold bg-purple-300 text-[#1D1833] rounded-full w-12 h-12 flex items-center justify-center">
+                            5
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">
+                                Control quality and logistics
+                            </h3>
+                            <p class="text-sm text-gray-300">
+                                With our highly distributed operation team consisting of full-time employees <br>
+                                and contractors in different regions, we are able to dispatch them to conduct <br>
+                                on-site inspections to evaluate suppliers easily. The same goes for product <br>
+                                inspection during shipment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class=" bg-[#0A0627] text-white py-24 px-6 relative">
+        <!-- Background Images -->
+        <img src="Images/Vector (1).png" class="absolute top-[3%] left-[0%] h-[50%] hidden md:block">
+        <img src="Images/Vector.png" class="absolute top-[60%] right-[0%] h-[30%] hidden md:block">
+        <div class="max-w-7xl mx-auto">
+            <!-- Title -->
+            <h2 class="text-4xl font-bold text-center mb-4">
+                FAQ<span class="text-purple-500">’S</span>
+            </h2>
+            <!-- Paragraph -->
+            <p class="text-center text-gray-400 mb-12">
+                It is a long established fact that a reader will be distracted by the readable content of a
+                page
+                when looking <br> at its layout. The point of using Lorem Ipsum is that it has.
+            </p>
+            <!-- FAQ Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Left Column -->
+                <div class="space-y-4">
+                    <!-- FAQ Item -->
+                    <div class="border border-gray-700 overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-3 text-left bg-[#0B0527]">
+                            <span>What is a sourcing agent?</span>
+                            <span class="text-3xl font-bold">+</span>
+                        </button>
+                    </div>
+                    <div class="border border-gray-700 overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-3 text-left bg-[#0B0527]">
+                            <span>Sourcing Agent in India</span>
+                            <span class="text-3xl font-bold text-orange-500">-</span>
+                        </button>
+                        <!-- Answer -->
+                        <div class="px-6 py-4 text-sm text-gray-300 bg-[#0B0527]">
+                            <ol class="list-decimal space-y-2 pl-6">
+                                <li>As a sourcing agents in India, we work in a wide range of industries, including
+                                    manufacturing, retail, and e-commerce, to help businesses find the right products at
+                                    the right prices</li>
+                                <li>We can help businesses to access a wide range of products at competitive prices.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- Right Column -->
+                <div class="space-y-4">
+                    <div class="border border-gray-700 overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-2 text-left bg-[#0B0527]">
+                            <span>What are the benefits of working with a sourcing agent in India?</span>
+                            <span class="text-3xl font-bold">+</span>
+                        </button>
+                    </div>
+                    <div class="border border-gray-700 overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-2 text-left bg-[#0B0527]">
+                            <span>What are the services offered by a sourcing agent in India?</span>
+                            <span class="text-3xl font-bold">+</span>
+                        </button>
+                    </div>
+                    <div class="border border-gray-700 overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-2 text-left bg-[#0B0527]">
+                            <span>What are your fees for your services as a sourcing agent in India?</span>
+                            <span class="text-3xl font-bold">+</span>
+                        </button>
+                    </div>
+                    <div class="border border-gray-700 overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-2 text-left bg-[#0B0527]">
+                            <span>How do you help businesses find the right suppliers?</span>
+                            <span class="text-3xl font-bold">+</span>
+                        </button>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="bg-[#0A0627] text-white py-12 px-6 relative">
+        <!-- Background Images (hidden on small screens) -->
+        <img src="Images/Footer → footer-shape-2.svg.png" class="absolute top-[3%] left-[0%] hidden md:block">
+        <img src="Images/SVG-R.png" class="absolute top-[50%] right-[0%] h-[25%] hidden md:block">
+
+        <!-- Use the same container width as above (max-w-7xl) and ensure it's centered -->
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <!-- First Part: 40% width -->
+            <div class="w-full md:w-2/5 mb-6 md:mb-0 text-center md:text-left">
+                <img src="Images/f-logo.png" alt="Image" class="mb-4 w-[181px] h-[65px] mx-auto md:mx-0">
+                <p class="text-lg mb-6">
+                    There's nothing better than a good natter and we’d <br> love to hear about your business.
+                </p>
+                <div class="flex justify-start space-x-4">
+                    <img src="Images/facbook.png" alt="Icon 1" class="w-10 h-10">
+                    <img src="Images/instagram.png" alt="Icon 2" class="w-10 h-10">
+                    <img src="Images/linkidn.png" alt="Icon 3" class="w-10 h-10">
+                    <img src="Images/youtube.png" alt="Icon 4" class="w-10 h-10">
+                    <img src="Images/twintter.png" alt="Icon 5" class="w-10 h-10">
+                </div>
+            </div>
+            <!-- Second Part: 30% width -->
+            <div class="w-full md:w-1/4 mb-6 md:mb-0 text-start">
+                <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-white">Vendor Partnership</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Direct Sourcing</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Buy - Sell</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Blogs</a></li>
+                </ul>
+            </div>
+            <!-- Third Part: 30% width -->
+            <div class="w-full md:w-1/6 text-start">
+                <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                <!-- First contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/call.png" alt="Phone" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">+91 123 456 789</p>
+                    </div>
+                </div>
+                <!-- Second contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/mg.png" alt="Email" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">hello@exportagent.in</p>
+                    </div>
+                </div>
+                <!-- Third contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/location.png" alt="Location" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">Exult Shopper, Vesu, Surat, GJ 395007, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Links and Copyright in One Row -->
+        <div class="mt-12 text-center w-full border-t border-[#1E1751]">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-4">
+                <p class="text-gray-400 mb-4 md:mb-0">&copy; Export Agent All Right Reserved.</p>
+                <div class="space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white">Help</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript to Toggle Mobile Menu -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const shapeImage = document.getElementById('shape-image');
+
+        let isMenuOpen = false;
+
+        const updateButtonIcon = () => {
+            if (isMenuOpen) {
+                // Show close icon (cross)
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>`;
+            } else {
+                // Show hamburger icon
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>`;
+            }
+        };
+
+        // Toggle mobile menu visibility and button icon
+        mobileMenuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active');
+            updateButtonIcon();
+        });
+
+
+
+
+        function showForm(form) {
+            const buyForm = document.getElementById('buyForm');
+            const sellForm = document.getElementById('sellForm');
+            const buyTab = document.getElementById('buyTab');
+            const sellTab = document.getElementById('sellTab');
+            const pageTitle = document.querySelector('.text-center h1'); // Target the title
+
+            if (form === 'buy') {
+                buyForm.classList.remove('hidden');
+                sellForm.classList.add('hidden');
+                buyTab.classList.add('active');
+                sellTab.classList.remove('active');
+                pageTitle.innerHTML = 'Home / <span class="text-purple-300">Buy</span>'; // Change title to "Buy"
+            } else {
+                buyForm.classList.add('hidden');
+                sellForm.classList.remove('hidden');
+                buyTab.classList.remove('active');
+                sellTab.classList.add('active');
+                pageTitle.innerHTML = 'Home / <span class="text-purple-300">Sell</span>'; // Change title to "Sell"
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

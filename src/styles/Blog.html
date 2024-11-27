@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu with Cross Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensure the menu slides down under the header */
+        #mobile-menu {
+            transition: transform 0.0s ease-in-out;
+            transform: translateY(-200%);
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .contact-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .contact-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #101542;
+            border-bottom: 1px solid #101542;
+            box-sizing: border-box;
+        }
+
+        .learn-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .learn-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .view-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .view-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .testimonial-section {
+            background: url('path/to/background.jpg') no-repeat center/cover;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        img {
+            border-radius: inherit;
+        }
+
+        blockquote {
+            position: relative;
+            margin: 16px 0;
+            padding: 0 20px;
+            font-size: 1rem;
+        }
+
+        .line-horizontal {
+            position: absolute;
+            height: 4px;
+            width: 150px;
+            background-color: white;
+            left: 520px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-[#080321] via-[#090627] to-[#101542]">
+    <!-- Top Space with Color -->
+    <div class="w-full h-[10px] bg-gradient-to-b from-[#111848] to-[#111848]"></div>
+
+    <!-- Full Screen Header Section -->
+    <header
+        class="w-full h-[70px] bg-gradient-to-b from-[#111848] to-[#111848] shadow-md relative flex items-center z-50">
+        <div class="container mx-auto max-w-[1440px] flex justify-between items-center px-6">
+            <!-- Top-left Corner Shape (Hidden on Mobile) -->
+            <div id="shape-image" class="absolute top-[-50px] right-0 z-10 hidden md:block">
+                <img src="./Images/pngwing 1.png" alt="shape">
+            </div>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="./Images/Logo.png" alt="Logo" class="w-[150px] h-[52px]">
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Navbar Links (Desktop) -->
+            <nav class="hidden md:flex w-auto space-x-8 text-sm text-white">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <a href="AboutUs.html" class="hover:text-blue-600">About Us</a>
+                <a href="Solution.html" class="hover:text-blue-600">Solutions</a>
+                <a href="Buy.html" class="hover:text-blue-600">Buy-sell</a>
+                <a href="Blog.html" class="hover:text-blue-600">Blogs</a>
+            </nav>
+
+            <!-- Contact Us Button (Desktop) -->
+            <div class="hidden md:flex">
+                <div class="contact-button">
+                    <a href="ContactUs.html" class="btn z-10">Contact Us <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu (Initially Hidden) -->
+    <div id="mobile-menu" class="md:hidden bg-[#080321] w-full shadow-md absolute left-0 z-40">
+        <nav class="flex flex-col items-center space-y-6 py-6">
+            <a href="#" 
+            class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">
+            Home
+         </a>
+            <a href="AboutUs.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">About Us</a>
+            <a href="Solution.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">Solutions</a>
+            <a href="Buy.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg border-b-2 border-[#17122E] mb-3">Buy-sell</a>
+            <a href="Blog.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg ">Blogs</a>
+
+
+            <div class="contact-button">
+                <a href="ContactUs.html">Contact Us <span>&rarr;</span></a>
+            </div>
+
+        </nav>
+    </div>
+
+
+
+
+
+    <section class="relative py-64 bg-gradient-to-b from-[#111848] to-[#080321]">
+        <!-- Container for Centered Content -->
+        <div class="container mx-auto flex items-center justify-center relative">
+            <!-- Left Image -->
+            <div class="absolute top-[-170%] left-[32%] mt-4">
+                <img src="./Images/Vector 4.png" alt="Left Image" class="w-[161px] h-[258px]">
+            </div>
+
+            <!-- Center Text (Home / About Us) -->
+            <div class="text-center text-white z-10 mx-8">
+                <h1 class="text-4xl font-bold mb-8">Home / <span class="text-purple-300">Blogs</span></h1>
+
+            </div>
+
+            <!-- Right Image -->
+            <div class="absolute top-[-190%] right-[32%] mt-4">
+                <img src="./Images/Vector 5.png" alt="Right Image" class="w-[161px] h-[258px]">
+            </div>
+        </div>
+        <img src="Images/A-1.png" class="absolute top-[15%] left-[2%]">
+    </section>
+
+
+
+    <section class="bg-[#080321] text-white py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+           
+
+            <!-- Blog Cards 1-->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Card 1 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/Rectangle 7.png" alt="Blog 1 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">How to source Indian <br> handicraft products in 2023</h3>
+                        <p class="text-sm mb-6">India is a country that is known for its rich <br> cultural heritage and artistic skills...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>14 March, 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/Rectangle 7 (1).png" alt="Blog 2 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Why you should hire an export agent?</h3>
+                        <p class="text-sm mb-11">We are building a new source of overseas <br> sales for Indian firms...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>5 Jul, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b3.png" alt="Blog 3 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Why you should export now <br>instead of later?</h3>
+                        <p class="text-sm mb-6">Your competitors are finding it profitable to <br> export their productsr...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>5 Jul, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Cards 2-->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Card 1 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b4.png" alt="Blog 1 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Joint Ventures and Technology <br> Licensing in the USA</h3>
+                        <p class="text-sm mb-6">Technology licensing and joint partnerships <br> are two more strategies to generate...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>28 Jun, 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b5.png" alt="Blog 2 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Importing Pomegranates from <br> India Made Easy</h3>
+                        <p class="text-sm mb-6">India is often referred to be the world's "fruit <br> basket." We have been blessed with Indian...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>28 June, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b6.png" alt="Blog 3 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Importing onions from India <br> Made Easy</h3>
+                        <p class="text-sm mb-6">All you need to know about Onions Scenario <br> before Importing from India According to...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>28 June, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Cards 3-->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Card 1 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b7.png" alt="Blog 1 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Importance of marketing plan <br> in import export business</h3>
+                        <p class="text-sm mb-6">The marketing plan serves as an <br> implementation tool in corporate practice...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>28 June, 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b8.png" alt="Blog 2 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Customs clearance to Import <br> Export Goods in EU, UK</h3>
+                        <p class="text-sm mb-6">With the tightening of global trade barriers <br> and the requirements for compliance with...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>28 Jun, 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b9.png" alt="Blog 3 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Methods of Payment in <br> International Business</h3>
+                        <p class="text-sm mb-6">Prudent Credit Practices Credit is extended <br> cautiously by experienced exporters...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>28 June, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Cards 4-->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Card 1 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b10.png" alt="Blog 1 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">How to start export business in <button></button> India?</h3>
+                        <p class="text-sm mb-6">Introduction The decade of 90's has <br> witnessed the emergence of new world...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>9 March, 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b11.png" alt="Blog 2 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">What is Harmonised System <br> (HS) Code and Indian Tariff...</h3>
+                        <p class="text-sm mb-6">Since various types of commodities are <br> imported and exported among different...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>18 Jan, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-[#0A0627] overflow-hidden shadow-lg">
+                    <!-- Image -->
+                    <img src="Images/b12.png" alt="Blog 3 Image" class="w-full h-48 object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4">Introduction to Export <br>Management</h3>
+                        <p class="text-sm mb-6">What is Export? Export and Import are two <br> sides of the same coin namely, International...</p>
+                        <!-- Author and Date -->
+                        <div class="flex justify-between items-center text-sm text-gray-400 mt-11">
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/User.png" alt="">
+                                <span>Musharof Chy</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <img src="Images/Calander.png" alt=""> <span>18 Jan, 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <section class="bg-[#0A0627] text-white py-12 px-6 relative">
+        <!-- Background Images (hidden on small screens) -->
+        <img src="Images/Footer → footer-shape-2.svg.png" class="absolute top-[3%] left-[0%] hidden md:block">
+        <img src="Images/SVG-R.png" class="absolute top-[50%] right-[0%] h-[25%] hidden md:block">
+
+        <!-- Use the same container width as above (max-w-7xl) and ensure it's centered -->
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <!-- First Part: 40% width -->
+            <div class="w-full md:w-2/5 mb-6 md:mb-0 text-center md:text-left">
+                <img src="Images/f-logo.png" alt="Image" class="mb-4 w-[181px] h-[65px] mx-auto md:mx-0">
+                <p class="text-lg mb-6">
+                    There's nothing better than a good natter and we’d <br> love to hear about your business.
+                </p>
+                <div class="flex justify-start space-x-4">
+                    <img src="Images/facbook.png" alt="Icon 1" class="w-10 h-10">
+                    <img src="Images/instagram.png" alt="Icon 2" class="w-10 h-10">
+                    <img src="Images/linkidn.png" alt="Icon 3" class="w-10 h-10">
+                    <img src="Images/youtube.png" alt="Icon 4" class="w-10 h-10">
+                    <img src="Images/twintter.png" alt="Icon 5" class="w-10 h-10">
+                </div>
+            </div>
+            <!-- Second Part: 30% width -->
+            <div class="w-full md:w-1/4 mb-6 md:mb-0 text-start">
+                <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-white">Vendor Partnership</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Direct Sourcing</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Buy - Sell</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Blogs</a></li>
+                </ul>
+            </div>
+            <!-- Third Part: 30% width -->
+            <div class="w-full md:w-1/6 text-start">
+                <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                <!-- First contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/call.png" alt="Phone" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">+91 123 456 789</p>
+                    </div>
+                </div>
+                <!-- Second contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/mg.png" alt="Email" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">hello@exportagent.in</p>
+                    </div>
+                </div>
+                <!-- Third contact row -->
+                <div class="flex items-center justify-start space-x-4 mb-4">
+                    <img src="Images/location.png" alt="Location" class="w-8 h-8">
+                    <div>
+                        <p class="text-lg">Exult Shopper, Vesu, Surat, GJ 395007, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Links and Copyright in One Row -->
+        <div class="mt-12 text-center w-full border-t border-[#1E1751]">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-4">
+                <p class="text-gray-400 mb-4 md:mb-0">&copy; Export Agent All Right Reserved.</p>
+                <div class="space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white">Help</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript to Toggle Mobile Menu -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const shapeImage = document.getElementById('shape-image');
+
+        let isMenuOpen = false;
+
+        const updateButtonIcon = () => {
+            if (isMenuOpen) {
+                // Show close icon (cross)
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>`;
+            } else {
+                // Show hamburger icon
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>`;
+            }
+        };
+
+        // Toggle mobile menu visibility and button icon
+        mobileMenuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active');
+            updateButtonIcon();
+        });
+
+
+
+
+        function showForm(form) {
+            const buyForm = document.getElementById('buyForm');
+            const sellForm = document.getElementById('sellForm');
+            const buyTab = document.getElementById('buyTab');
+            const sellTab = document.getElementById('sellTab');
+            const pageTitle = document.querySelector('.text-center h1'); // Target the title
+
+            if (form === 'buy') {
+                buyForm.classList.remove('hidden');
+                sellForm.classList.add('hidden');
+                buyTab.classList.add('active');
+                sellTab.classList.remove('active');
+                pageTitle.innerHTML = 'Home / <span class="text-purple-300">Buy</span>'; // Change title to "Buy"
+            } else {
+                buyForm.classList.add('hidden');
+                sellForm.classList.remove('hidden');
+                buyTab.classList.remove('active');
+                sellTab.classList.add('active');
+                pageTitle.innerHTML = 'Home / <span class="text-purple-300">Sell</span>'; // Change title to "Sell"
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
