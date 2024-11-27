@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu with Cross Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensure the menu slides down under the header */
+        #mobile-menu {
+            transition: transform 0.0s ease-in-out;
+            transform: translateY(-200%);
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .contact-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .contact-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #101542;
+            border-bottom: 1px solid #101542;
+            box-sizing: border-box;
+        }
+
+        .learn-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .learn-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .view-button a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            border: 1px solid #ffffff;
+            padding: 8px 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .view-button a::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            height: 0;
+            width: 0;
+            width: 50px;
+            height: 120%;
+            border-right: 1px solid #090423;
+            border-bottom: 1px solid #090423;
+            box-sizing: border-box;
+        }
+
+        .testimonial-section {
+            background: url('path/to/background.jpg') no-repeat center/cover;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        img {
+            border-radius: inherit;
+        }
+
+        blockquote {
+            position: relative;
+            margin: 16px 0;
+            padding: 0 20px;
+            font-size: 1rem;
+        }
+
+        .line-horizontal {
+            position: absolute;
+            height: 4px;
+            width: 150px;
+            background-color: white;
+            left: 520px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-[#080321] via-[#090627] to-[#101542]">
+    <!-- Top Space with Color -->
+    <div class="w-full h-[10px] bg-gradient-to-b from-[#111848] to-[#111848]"></div>
+
+    <!-- Full Screen Header Section -->
+    <header
+        class="w-full h-[70px] bg-gradient-to-b from-[#111848] to-[#111848] shadow-md relative flex items-center z-50">
+        <div class="container mx-auto max-w-[1440px] flex justify-between items-center px-6">
+            <!-- Top-left Corner Shape (Hidden on Mobile) -->
+            <div id="shape-image" class="absolute top-[-50px] right-0 z-10 hidden md:block">
+                <img src="./Images/pngwing 1.png" alt="shape">
+            </div>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="./Images/Logo.png" alt="Logo" class="w-[150px] h-[52px]">
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Navbar Links (Desktop) -->
+            <nav class="hidden md:flex w-auto space-x-8 text-sm text-white">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <a href="AboutUs.html" class="hover:text-blue-600">About Us</a>
+                <a href="#solutions" class="hover:text-blue-600">Solutions</a>
+                <a href="#buy-sell" class="hover:text-blue-600">Buy-sell</a>
+                <a href="#blogs" class="hover:text-blue-600">Blogs</a>
+            </nav>
+
+            <!-- Contact Us Button (Desktop) -->
+            <div class="hidden md:flex">
+                <div class="contact-button">
+                    <a href="#" class="btn">Contact Us <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu (Initially Hidden) -->
+    <div id="mobile-menu" class="md:hidden bg-[#111848] w-full shadow-md absolute left-0 z-40">
+        <nav class="flex flex-col items-center space-y-6 py-6">
+            <a href="index.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Home</a>
+            <a href="AboutUs.html" class="text-white hover:text-blue-600 px-4 py-3 text-lg">About Us</a>
+            <a href="#solutions" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Solutions</a>
+            <a href="#buy-sell" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Buy-sell</a>
+            <a href="#blogs" class="text-white hover:text-blue-600 px-4 py-3 text-lg">Blogs</a>
+
+            <div class="contact-button">
+                <a href="#">Contact Us <span>&rarr;</span></a>
+            </div>
+        </nav>
+    </div>
+
+
+
+
+
+    <section class="relative py-64 bg-gradient-to-b from-[#111848] to-[#080321]">
+        <!-- Container for Centered Content -->
+        <div class="container mx-auto flex items-center justify-center relative">
+            <!-- Left Image -->
+            <div class="absolute top-[-170%] left-[32%] mt-4">
+                <img src="./Images/Vector 4.png" alt="Left Image" class="w-[161px] h-[258px]">
+            </div>
+
+            <!-- Center Text (Home / About Us) -->
+            <div class="text-center text-white z-10 mx-8">
+                <h1 class="text-4xl font-bold mb-8">Home / <span class="text-purple-300">About Us</span></h1>
+            </div>
+
+            <!-- Right Image -->
+            <div class="absolute top-[-190%] right-[32%] mt-4">
+                <img src="./Images/Vector 5.png" alt="Right Image" class="w-[161px] h-[258px]">
+            </div>
+        </div>
+        <img src="Images/A-1.png" class="absolute top-[15%] left-[2%]">
+    </section>
+
+
+
+
+
+
+
+
+    <section class="relative overflow-hidden bg-[#0A0627] py-8">
+        <!-- Background Images -->
+        <div class="absolute bottom-[6%] right-0">
+            <img src="Images/SVG-R.png" class="w-20 md:w-auto"> <!-- Adjust width for smaller screens -->
+        </div>
+
+        <!-- First Two Parts -->
+        <div class="relative z-10 py-16 bg-[#0A0627]">
+            <!-- Backgrounds -->
+            <div class="absolute top-[8%] left-[0%]">
+                <img src="./Images/A-2.png" class="hidden md:block">
+            </div>
+
+            <div
+                class="container mx-auto max-w-[1440px] flex flex-col-reverse md:flex-row items-center px-4 space-y-8 md:space-y-0">
+                <!-- Left Content (Image) -->
+                <div class="w-full md:w-1/2 flex justify-center px-4">
+                    <img src="./Images/Group 1000005387.png" alt="Hero Image"
+                        class="max-w-[280px] md:max-w-full h-auto rounded-lg">
+                </div>
+
+                <!-- Right Content (Text) -->
+                <div class="w-full md:w-1/2 text-left text-white px-4 space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-1xl md:text-4xl font-bold leading-snug text-left">
+                            Export-import from <span class="text-purple-300">India <br> made easy.</span>
+                        </h1>
+                        <p class="text-sm md:text-base text-left">
+                            See how we can help your company establish <br> international trade.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Div with Gradient Border and Background -->
+        <div class="w-full lg:w-1/2 p-6 lg:p-8 shadow-lg border rounded relative container mx-auto py-8" style="border-image-source: linear-gradient(to top, #080321, #1E1751); 
+            border-image-slice: 1; 
+            overflow: hidden; margin-bottom: 3%;">
+
+            <!-- Background Layer -->
+            <div style="background: linear-gradient(to top, rgba(8, 3, 33, 0.1), rgba(30, 23, 81, 0.1)); 
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                right: 0; 
+                bottom: 0; 
+                z-index: 0; 
+                border-radius: inherit;">
+            </div>
+            <!-- Centered Title and Paragraph -->
+            <div class="text-center py-8">
+                <h3 class="text-3xl font-bold text-white mb-4">Exp<span class="text-purple-300">ort</span></h3>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ex odio, sollicitudin <br> ac
+                    bibendum vel, semper sed ex. Praesent maximus dapibus lectus.
+                </p>
+            </div>
+
+            <!-- Content Inside the Div -->
+            <div class="relative z-10">
+                <div class="mx-auto px-4 py-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8"> <!-- Adjusted gap for spacing -->
+                        <!-- Left Part with 3 Rows -->
+                        <div class="space-y-6 mx-auto text-center">
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 1" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Finds the best approach to exporting for your company.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 2" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Negotiates on prices and business conditions.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 3" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Daily communication with customers.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Part -->
+                        <div class="space-y-6 mx-auto text-center">
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 1" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Sales of your products and services to GCC.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 2" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Coordinates the signing of contracts with potential buyers.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 3" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Represents company at exhibitions and business meetings.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Import Section (second half) -->
+        <div class="w-full lg:w-1/2 p-6 lg:p-8 shadow-lg border rounded relative container mx-auto" style="border-image-source: linear-gradient(to top, #080321, #1E1751); 
+            border-image-slice: 1; 
+            overflow: hidden;">
+
+            <!-- Background Layer -->
+            <div style="background: linear-gradient(to top, rgba(8, 3, 33, 0.1), rgba(30, 23, 81, 0.1)); 
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                right: 0; 
+                bottom: 0; 
+                z-index: 0; 
+                border-radius: inherit;">
+            </div>
+            <!-- Centered Title and Paragraph -->
+            <div class="text-center py-8">
+                <h3 class="text-3xl font-bold text-white mb-4">Imp<span class="text-purple-300">ort</span></h3>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ex odio, sollicitudin <br> ac
+                    bibendum vel, semper sed ex. Praesent maximus dapibus lectus.
+                </p>
+            </div>
+
+            <!-- Content Inside the Div -->
+            <div class="relative z-10">
+                <div class="mx-auto px-4 py-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8"> <!-- Adjusted gap for spacing -->
+                        <!-- Left Part with 3 Rows -->
+                        <div class="space-y-6 mx-auto text-center">
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 1" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Finds the best approach to exporting for your company.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 2" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Negotiates on prices and business conditions.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 3" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Daily communication with customers.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Part -->
+                        <div class="space-y-6 mx-auto text-center">
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 1" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Sales of your products and services to GCC.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 2" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Coordinates the signing of contracts with potential buyers.
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <img src="./Images/Frame 2.png" alt="Icon 3" class="w-6 h-6">
+                                <p class="text-xs md:text-sm leading-relaxed text-white whitespace-nowrap">
+                                    Represents company at exhibitions and business meetings.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="relative py-16 bg-[#080321]">
+        <!-- First Part with Image and Title/Paragraph -->
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0">
+            <!-- First Part: Image Section -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="Images/Group 1000005402.png" alt="Image 1" class="max-w-full h-auto rounded-lg">
+            </div>
+
+            <!-- Second Part: Title and Paragraph Section -->
+            <div class="w-full md:w-1/2 text-start text-white px-4">
+                <h2 class="text-3xl font-bold text-white mb-4">Our <span class="text-purple-300">Vision</span></h2>
+                <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ex odio, sollicitudin
+                    ac bibendum vel, semper sed ex. Praesent maximus dapibus lectus, in lacinia tortor consectetur a.
+                    Vivamus tincidunt, eros sit amet ultricies gravida, odio metus convallis quam, nec eleifend eros
+                    tellus a massa. Vivamus et molestie quam, non scelerisque neque. Donec dapibus quam ut neque
+                    finibus, eget fringilla libero dapibus. Ut sit amet feugiat est. Ut sollicitudin neque a consequat
+                    congue. Nunc consequat aliquam dui, in vestibulum tortor. Aenean volutpat pretium eros a dictum.
+                    Duis et efficitur nulla.</p>
+            </div>
+        </div>
+
+        <!-- Second Part with Image and Title/Paragraph -->
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0 mt-16">
+            <!-- First Part: Title and Paragraph Section -->
+            <div class="w-full md:w-1/2 text-start text-white px-4">
+                <h2 class="text-3xl font-bold text-white mb-4">Our <span class="text-purple-300">Mission</span></h2>
+                <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ex odio, sollicitudin
+                    ac bibendum vel, semper sed ex. Praesent maximus dapibus lectus, in lacinia tortor consectetur a.
+                    Vivamus tincidunt, eros sit amet ultricies gravida, odio metus convallis quam, nec eleifend eros
+                    tellus a massa. Vivamus et molestie quam, non scelerisque neque. Donec dapibus quam ut neque
+                    finibus, eget fringilla libero dapibus. Ut sit amet feugiat est. Ut sollicitudin neque a consequat
+                    congue. Nunc consequat aliquam dui, in vestibulum tortor. Aenean volutpat pretium eros a dictum.
+                    Duis et efficitur nulla.</p>
+            </div>
+
+            <!-- Second Part: Image Section -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="Images/20943892-ai 1.png" alt="Image 2" class="max-w-full h-auto rounded-lg">
+            </div>
+        </div>
+
+        <!-- Absolute Positioned Headings -->
+        <h1 class="absolute top-[8%] left-[87%] transform -translate-x-1/2 text-4xl font-bold text-[#0F0B28] whitespace-nowrap sm:text-6xl md:text-8xl lg:text-[100px] hidden md:block"
+            style="font-size: 100px;">Our Vision</h1>
+        <h2 class="absolute bottom-[40%] right-[85.5%] transform translate-x-1/2 text-3xl font-semibold text-[#0F0B28] whitespace-nowrap sm:text-5xl md:text-7xl lg:text-[100px] hidden md:block"
+            style="font-size: 100px;">Our Mission</h2>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="relative py-16 bg-[#080321]">
+        <!-- First Part with Image and Title/Paragraph -->
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0">
+            <!-- First Part: Image Section -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="Images/object.png" alt="Image 1" class="max-w-full h-auto rounded-lg">
+            </div>
+
+            <!-- Second Part: Title and Paragraph Section -->
+            <div class="w-full md:w-1/2 text-start text-white px-4">
+                <h2 class="text-3xl font-bold text-white mb-4">Net<span class="text-purple-300">Work</span></h2>
+                <p class="text-lg">We aim at creating a worldwide network of credible businesses and professionals that
+                    will ultimately develop a healthy ecosystem where international trade thrive and enterprises
+                    collaborate efficiently. <br> We always ensure that business entities, industry experts, community
+                    members, employees or any parties involved in a trade are trustworthy, capable, and reliable. This
+                    helps us cultivate a dynamic ecosystem where safe and reliable business transactions can take place.
+                </p>
+            </div>
+        </div>
+
+        <!-- Second Part with Image and Title/Paragraph -->
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0 mt-16">
+            <!-- First Part: Title and Paragraph Section -->
+            <div class="w-full md:w-1/2 text-start text-white px-4">
+                <h2 class="text-3xl font-bold text-white mb-4">Data & <span class="text-purple-300">Insights</span></h2>
+                <p class="text-lg">We collect, process, and analyze all kinds of data related to the global trade and
+                    latest trends across different industries to help our business associates better understand not only
+                    the industry outlook but also the global market allowing them to make well-informed business
+                    decisions <br> Organizing information, transforming them into insights, and making them accessible
+                    can help businesses discover untapped business opportunities, leading to more transactions.</p>
+            </div>
+
+            <!-- Second Part: Image Section -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="Images/3907916-ai 1.png" alt="Image 2" class="max-w-full h-auto rounded-lg">
+            </div>
+        </div>
+
+        <!-- Third Part with Image and Title/Paragraph -->
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0">
+            <!-- Third Part: Image Section -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="Images/Group 1000005820.png" alt="Image 1" class="max-w-full h-auto rounded-lg">
+            </div>
+
+            <!-- Second Part: Title and Paragraph Section -->
+            <div class="w-full md:w-1/2 text-start text-white px-4">
+                <h2 class="text-3xl font-bold text-white mb-4">Safe And Reliable Transactions <span
+                        class="text-purple-300">Transactions</span></h2>
+                <p class="text-lg">Lastly, to realize our vision of enabling products cross market borders freely, we
+                    believe we are also on a mission to provide any means necessary to ensure safe transactions between
+                    importer and exporter. This includes quality management, secured payment, logistics management, and
+                    so on. <br> By ensuring that our ecosystem is genuinely safe, we can allow our network to forge new
+                    business relationships and explore new business opportunities. This, in turn, helps the world get
+                    closer to market equilibrium.
+            </div>
+        </div>
+
+
+        <!-- Absolute Positioned Headings -->
+        <h1 class="absolute top-[8%] left-[89%] transform -translate-x-1/2 text-4xl font-bold text-[#0F0B28] whitespace-nowrap sm:text-6xl md:text-8xl lg:text-[100px] hidden md:block"
+            style="font-size: 100px;">Network</h1>
+        <h2 class="absolute bottom-[55%] right-[82%] transform translate-x-1/2 text-3xl font-semibold text-[#0F0B28] whitespace-nowrap sm:text-5xl md:text-7xl lg:text-[100px] hidden md:block"
+            style="font-size: 100px;">Data & Insights</h2>
+        <h1 class="absolute top-[68.5%] left-[78%] transform -translate-x-1/2 text-4xl font-bold text-[#0F0B28] whitespace-nowrap sm:text-6xl md:text-8xl lg:text-[100px] hidden md:block"
+            style="font-size: 100px;">Safe And Reliable</h1>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="relative py-16 bg-[#080321]">
+        <!-- Title and Paragraph Centered -->
+        <div class="container mx-auto text-start px-4">
+            <h2 class="text-3xl font-bold text-white mb-4" style="font-size: 32px; line-height: 38px;">
+                We are building an ecosystem where export and import of <br> products is more reliable,
+                <span class="text-purple-300">transparent and efficient.</span>
+            </h2>
+            <p class="text-lg text-white max-w-3xl text-start whitespace-nowrap">
+                We set out this venture with an aim of empowering businesses by enabling great product cross-market
+                borders more freely. <br> In our efforts to attain this vision; over the years we have diversified into
+                various fields, gained expertise, and that has forayed into Export/ <br> Import, Trading business and;
+                acting as a commission agent & export agent.
+            </p>
+        </div>
+
+        <!-- Two-Part Layout with Image and Title/Paragraph -->
+        <div class="container mx-auto mt-16 flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0">
+            <!-- First Part: Image Section -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="Images/Group 1000005410.png" alt="Image Description" class="max-w-full h-auto rounded-lg">
+            </div>
+
+            <!-- Second Part: Title, Bullets, and Paragraph -->
+            <div class="w-full md:w-1/2 text-start text-white px-4">
+                <h3 class="text-2xl font-bold mb-4">
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Our Core Values</li>
+                    </ul>
+                </h3>
+
+                <p class="text-lg mb-8">
+                    For foreign and domestic sellers / suppliers, we represent them (after due diligence) <br> and
+                    extend our
+                    services by way of marketing their products within the Indian and <br> International market.
+                </p>
+
+                <!-- Repeated Content -->
+                <h3 class="text-2xl font-bold mb-4">
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Our Core Values</li>
+                    </ul>
+                </h3>
+
+                <p class="text-lg">
+                    For foreign buyers, we represent them as their Agents, right <br> from sourcing the right supplier
+                    to
+                    negotiating the prices to delivering the products to the importer. We act <br> as an intermediary
+                    between
+                    foreign buyers and Indian sellers for the given products.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <section class="relative py-16 bg-[#080321]">
+        <!-- Title and Paragraph Centered -->
+        <div class="container mx-auto text-start px-4">
+            <h2 class="text-3xl font-bold text-white mb-4" style="font-size: 32px; line-height: 32px;">
+                We develop integrated global
+                <span class="text-purple-300">supply <br>chain</span> for various products.
+            </h2>
+            <p class="text-lg text-white max-w-3xl text-start mb-8 whitespace-nowrap">
+                Sourcing the Right Buyers and Suppliers as per the client’s product requirements and verifying the
+                credentials as per the needs of the client. Quality Control and <br>Physical Inspection / verification
+                of
+                the supplier. Acquiring product samples to ensure that the product meets our clients’ requirements and
+                specifications. <br> Negotiating the Payment Terms on behalf of our clients. Conducting 3rd party
+                inspection of the order at the time of shipment. Adhering to the shipment schedule and <br> ensuring
+                timely
+                delivery of the order to our client. Follow-Up on the safety of Money for our business partners.
+                Conducting after-sales services.
+            </p>
+        </div>
+
+        <!-- First Row of 4 Parts (Boxes with Numbers) -->
+        <div class="container mx-auto flex flex-wrap justify-between space-x-4 mb-1 pt-6">
+            <div class="w-full md:w-1/5 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <img src="Images/Arrow 1.png" alt="Sourcing" class="absolute top-[35%] left-[93%] z-10">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">1.</p>
+                    <p class="text-white text-1xl">Sourcing</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/4 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <img src="Images/Arrow 1.png" alt="Sourcing" class="absolute top-[35%] left-[93%] z-10">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">2.</p>
+                    <p class="text-white text-1xl">Quality Control</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/4 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <img src="Images/Arrow 1.png" alt="Sourcing" class="absolute top-[35%] left-[93%] z-10">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">3.</p>
+                    <p class="text-white text-1xl">Sampling</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/4 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">4.</p>
+                    <p class="text-white text-1xl">Negotiation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row of 4 Parts (Boxes with Numbers) -->
+        <div class="container mx-auto flex flex-wrap justify-between space-x-4 mb-1">
+            <div class="w-full md:w-1/5 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <img src="Images/Arrow 6.png" alt="After-Sales Services" class="absolute top-[35%] left-[93%] z-10">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">8.</p>
+                    <p class="text-white text-1xl">After-Sales Services</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/4 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <img src="Images/Arrow 6.png" alt="After-Sales Services" class="absolute top-[35%] left-[93%] z-10">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">7.</p>
+                    <p class="text-white text-1xl">Follow-Up</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/4 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <img src="Images/Arrow 6.png" alt="After-Sales Services" class="absolute top-[35%] left-[93%] z-10">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">6.</p>
+                    <p class="text-white text-1xl">Shipment</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/4 sm:w-1/2 text-center bg-[#1D1833] pt-8 pb-8 rounded-lg shadow-lg mb-4 relative">
+                <div class="flex items-center justify-center space-x-2">
+                    <p class="text-white text-1xl text-purple-300">5.</p>
+                    <p class="text-white text-1xl">3rd Party Inspection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <section class="relative py-16 bg-[#0A0627]">
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center space-y-8 md:space-y-0">
+
+            <!-- Second Part: Title and Paragraph Section -->
+            <div class="w-full md:w-1/2 text-start text-white px-4">
+                <h2 class="text-3xl font-bold text-white mb-4">Our <span class="text-purple-300">Approach</span></h2>
+                <p class="text-lg whitespace-nowrap">We are all about collaboration and co-creation. Our interdisciplinary team is
+                    international, working <br>tirelessly to improve the collective experiences our business associates with
+                    an innovative, <br> holistic approach connecting global buyers with the right suppliers.<br> With a
+                    network across the globe, we are able to bring international expertise to the fore and apply <br> it at a
+                    local level while navigating the many complexities of export-import arising with each unique <br>
+                    project.
+            </div>
+            <!-- Third Part: Image Section -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="Images/Group 1000005530.png" alt="Image 1" class="max-w-full h-auto rounded-lg">
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+
+   <section class="bg-[#0A0627] text-white py-12 px-6 relative">
+    <!-- Background Images (hidden on small screens) -->
+    <img src="Images/Footer → footer-shape-2.svg.png" class="absolute top-[3%] left-[0%] hidden md:block">
+    <img src="Images/SVG-R.png" class="absolute top-[50%] right-[0%] h-[25%] hidden md:block">
+
+    <!-- Use the same container width as above (max-w-7xl) and ensure it's centered -->
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <!-- First Part: 40% width -->
+        <div class="w-full md:w-2/5 mb-6 md:mb-0 text-center md:text-left">
+            <img src="Images/f-logo.png" alt="Image" class="mb-4 w-[181px] h-[65px] mx-auto md:mx-0">
+            <p class="text-lg mb-6">
+                There's nothing better than a good natter and we’d <br> love to hear about your business.
+            </p>
+            <div class="flex justify-start space-x-4">
+                <img src="Images/facbook.png" alt="Icon 1" class="w-10 h-10">
+                <img src="Images/instagram.png" alt="Icon 2" class="w-10 h-10">
+                <img src="Images/linkidn.png" alt="Icon 3" class="w-10 h-10">
+                <img src="Images/youtube.png" alt="Icon 4" class="w-10 h-10">
+                <img src="Images/twintter.png" alt="Icon 5" class="w-10 h-10">
+            </div>
+        </div>
+        <!-- Second Part: 30% width -->
+        <div class="w-full md:w-1/4 mb-6 md:mb-0 text-start">
+            <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+            <ul class="space-y-3">
+                <li><a href="#" class="text-gray-400 hover:text-white">Vendor Partnership</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white">Direct Sourcing</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white">Buy - Sell</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white">Blogs</a></li>
+            </ul>
+        </div>
+        <!-- Third Part: 30% width -->
+        <div class="w-full md:w-1/6 text-start">
+            <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+            <!-- First contact row -->
+            <div class="flex items-center justify-start space-x-4 mb-4">
+                <img src="Images/call.png" alt="Phone" class="w-8 h-8">
+                <div>
+                    <p class="text-lg">+91 123 456 789</p>
+                </div>
+            </div>
+            <!-- Second contact row -->
+            <div class="flex items-center justify-start space-x-4 mb-4">
+                <img src="Images/mg.png" alt="Email" class="w-8 h-8">
+                <div>
+                    <p class="text-lg">hello@exportagent.in</p>
+                </div>
+            </div>
+            <!-- Third contact row -->
+            <div class="flex items-center justify-start space-x-4 mb-4">
+                <img src="Images/location.png" alt="Location" class="w-8 h-8">
+                <div>
+                    <p class="text-lg">Exult Shopper, Vesu, Surat, GJ 395007, India</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Links and Copyright in One Row -->
+    <div class="mt-12 text-center w-full border-t border-[#1E1751]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-4">
+            <p class="text-gray-400 mb-4 md:mb-0">&copy; Export Agent All Right Reserved.</p>
+            <div class="space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white">Help</a>
+                <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+    <!-- JavaScript to Toggle Mobile Menu -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const shapeImage = document.getElementById('shape-image');
+
+        let isMenuOpen = false;
+
+        const updateButtonIcon = () => {
+            if (isMenuOpen) {
+                // Show close icon (cross)
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>`;
+            } else {
+                // Show hamburger icon
+                mobileMenuToggle.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>`;
+            }
+        };
+
+        // Toggle mobile menu visibility and button icon
+        mobileMenuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active');
+            updateButtonIcon();
+        });
+    </script>
+</body>
+
+</html>
